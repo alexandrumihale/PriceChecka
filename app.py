@@ -5,11 +5,11 @@ import asyncio
 
 from date import * 
 
-'''
+
 def get_emag_price(product_url, output_file='emag_price.txt'):
     # Send a GET request to the url
     response = requests.get(product_url)
-    logdate = date.today()
+
 
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -23,7 +23,7 @@ def get_emag_price(product_url, output_file='emag_price.txt'):
 
            # Save the price to the specified output file
             with open(output_file, 'a+') as file:
-                file.write(logdate + " " + price)
+                file.write(f'{logdate} {price} \n')
 
             print(f'The price of the product is: {price}. Price saved to {output_file}')
             asyncio.run(telegram_send.send(messages=[f'The price of the product is: {price}. Price saved to {output_file}']))
@@ -35,7 +35,3 @@ def get_emag_price(product_url, output_file='emag_price.txt'):
 # Example usage
 product_url = input("Please enter emag product URL:")
 get_emag_price(product_url)
-
-'''
-
-print(logdate)
